@@ -3,8 +3,12 @@
  * @author BowenDeng
  * @date 2021/1/18
  * @version 1.0 <p> impl a dynamic array with add, insert, update, remove... methods </p>
+ * @version 1.1 <p> 2021/1/19
+ *              <p> add one parameter constructor to ArrayList.Now developers can create
+ *                  an instance by passing an cpp array </p>
  */
 #pragma once
+#include "List.hpp"
 
 /**
  * @brief  a java like dynamic array impl by cpp
@@ -12,7 +16,7 @@
  * @tparam T type of data that to store
  */
 template<class T>
-class ArrayList {
+class ArrayList : public List<T>{
 private:
     /**
      * capacity of array "element data" when it is created by
@@ -24,7 +28,7 @@ private:
      * bound of array "element data"
      * @version 1.0
      */
-    int capacity;
+    int capacity{};
     /**
      * number of valid data stored in array "element data"
      * @version 1.0
@@ -94,6 +98,23 @@ public:
         } else {
             throw std::underflow_error("initial capacity should beyond zero");
         }
+    }
+
+    /**
+     * initialize dynamic array by a cpp array.capacity and
+     * * size will be update to the same as the size of parsed
+     * array
+     * @param array a cpp array to parse into ArrayList
+     * @param length length of the passing array
+     * @version 1.1
+     */
+    explicit ArrayList<T>(T array[],int length) {
+        elementData = new T[length];
+        for (int i = 0; i < length; ++i) {
+            elementData[i] = array[i];
+        }
+        capacity = length;
+        size = length;
     }
 
     /**

@@ -6,6 +6,9 @@
  * @version 1.1 <p> 2021/1/19
  *              <p> add circular doubly linked list as a alternative choice </p>
  *              <p> fixed some bug </p>
+ * @version 1.2 <p> 2021/1/19
+ *              <p> add one parameter constructor to ArrayList.Now developers can create
+ *                  an instance by passing an cpp array </p>
  */
 
 #pragma once
@@ -35,6 +38,7 @@ struct Node {
 };
 
 #include <stdexcept>
+#include "List.hpp"
 
 /**
  * @brief  a java like link list impl by cpp
@@ -43,7 +47,7 @@ struct Node {
  * @version 1.0
  */
 template<class T>
-class LinkedList {
+class LinkedList : public List<T>{
 private:
     /**
      * first storage unit in LinkedList
@@ -90,6 +94,18 @@ public:
     explicit LinkedList<T>(bool isCircular) {
         if (isCircular) {
             this->isCircular = isCircular;
+        }
+    }
+
+    /**
+     * initialize linked list by a cpp array
+     * @param array a cpp array to parse into ArrayList
+     * @param length length of the passing array
+     * @version 1.2
+     */
+    explicit LinkedList<T>(T array[],int length){
+        for (int i = 0; i < length; ++i) {
+            add(array[i]);
         }
     }
 
@@ -141,11 +157,11 @@ public:
      */
     void insert(int index, T data) {
         if (index > size) {
-            throw std::out_of_range("invalid index:index beyond capacity");
+            throw std::out_of_range("in\"LinkedList::insert\", invalid index:index beyond size");
         } else if (size == index) {
             add(data);
         } else if (index < 0) {
-            throw std::underflow_error("index should equals or beyond zero");
+            throw std::underflow_error("in\"LinkedList::insert\", index should equals or beyond zero");
         } else {
             Node<T> *temp = head;
             for (int i = 0; i < index - 1; ++i) {
@@ -169,11 +185,11 @@ public:
      */
     void update(int index, T data) {
         if (index > size) {
-            throw std::out_of_range("invalid index:index beyond capacity");
+            throw std::out_of_range("in\"LinkedList::update\", invalid index:index beyond size");
         } else if (size == index) {
             tail->data = data;
         } else if (index < 0) {
-            throw std::underflow_error("index should equals or beyond zero");
+            throw std::underflow_error("in\"LinkedList::update\", index should equals or beyond zero");
         } else {
             Node<T> *temp = head;
             for (int i = 0; i < index; ++i) {
@@ -190,13 +206,13 @@ public:
      */
     void remove(int index) {
         if (index > size) {
-            throw std::out_of_range("invalid index:index beyond capacity");
+            throw std::out_of_range("in\"LinkedList::remove\", invalid index:index beyond size");
         } else if (size == index) {
             Node<T> *temp = tail;
             tail = tail->pre;
             delete temp;
         } else if (index < 0) {
-            throw std::underflow_error("index should equals or beyond zero");
+            throw std::underflow_error("in\"LinkedList::remove\", index should equals or beyond zero");
         } else if (index == 0) {
             Node<T> *temp = head;
             head = head->next;

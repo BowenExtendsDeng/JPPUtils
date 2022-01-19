@@ -6,31 +6,11 @@
 using namespace std;
 
 int main() {
-    auto *testList = new ArrayList<int>();
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(9);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
-    testList->add(3);
-    testList->add(5);
+    int test[40] = {1,2,3,4,5,6,7,8,9,0,
+                    1,2,3,4,5,6,7,8,9,0,
+                    1,2,3,4,5,6,7,8,9,0,
+                    1,2,3,4,5,6,7,8,9,0};
+    auto *testList = new ArrayList<int>(test,40);
     cout << testList->indexOf(5) << endl;
     cout << testList->valueOf(1) << endl;
 

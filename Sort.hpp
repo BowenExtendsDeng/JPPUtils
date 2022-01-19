@@ -11,3 +11,17 @@
 #include "ArrayList.hpp"
 #include "LinkedList.hpp"
 
+/**
+ *
+ * @tparam T
+ * @param src
+ * @return
+ * @version 0.1
+ */
+template<typename T>
+List<T> *insertionSort(List<T> srcList){
+    auto *dstList = new LinkedList<T>();
+    for()
+}
+
+

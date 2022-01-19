@@ -7,9 +7,17 @@ struct TreeNode {
     TreeNode<T> *rightChild;
 };
 
+template<class T>
 class BinaryTree {
 private:
-
+    TreeNode<T> *top;
+    TreeNode<T> *viewer = top;
 public:
+    BinaryTree() = default;
+    ~BinaryTree(){
+    }
 
+    TreeNode<T> *getViewer(){
+        return viewer;
+    }
 };
