@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main(){
+int main() {
     auto *testList = new ArrayList<int>();
     testList->add(3);
     testList->add(5);
@@ -31,22 +31,22 @@ int main(){
     testList->add(5);
     testList->add(3);
     testList->add(5);
-    cout<<testList->indexOf(5)<<endl;
-    cout<<testList->valueOf(1)<<endl;
+    cout << testList->indexOf(5) << endl;
+    cout << testList->valueOf(1) << endl;
 
     for (int i = 0; i < testList->length(); ++i) {
-        cout<<testList->valueOf(i)<<",";
+        cout << testList->valueOf(i) << ",";
     }
-    cout<<endl;
+    cout << endl;
 
     testList->remove(5);
 
     for (int i = 0; i < testList->length(); ++i) {
-        cout<<testList->valueOf(i)<<",";
+        cout << testList->valueOf(i) << ",";
     }
-    cout<<endl;
+    cout << endl;
 
-    cout<<testList->length()<<endl;
+    cout << testList->length() << endl;
 
     testList->remove(0);
     testList->remove(0);
@@ -70,10 +70,17 @@ int main(){
     testList->remove(0);
 
     for (int i = 0; i < testList->length(); ++i) {
-        cout<<testList->valueOf(i)<<",";
+        cout << testList->valueOf(i) << ",";
     }
-    cout<<endl;
+    cout << endl;
 
-    cout<<testList->length();
+    testList->insert(1, 99);
+
+    for (int i = 0; i < testList->length(); ++i) {
+        cout << testList->valueOf(i) << ",";
+    }
+    cout << endl;
+
+    cout << testList->length();
 };
 
