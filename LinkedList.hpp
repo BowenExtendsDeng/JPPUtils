@@ -9,6 +9,8 @@
  * @version 1.2 <p> 2021/1/19
  *              <p> add one parameter constructor to ArrayList.Now developers can create
  *                  an instance by passing an cpp array </p>
+ * @version 1.3 <p> 2021/1/20
+ *              <p> fix bug in ~LinkedList<>()</p>
  */
 
 #pragma once
@@ -111,14 +113,13 @@ public:
 
     /**
      * free all storage units in a instance of LinkedList
-     * @version 1.0
+     * @version 1.3
      */
     ~LinkedList<T>() {
-        Node<T> *data = head;
-        while (data != nullptr) {
-            Node<T> *nextNode = head->next;
-            delete data;
-            data = nextNode;
+        for (int i = 0; i < size; ++i) {
+            Node<T> *temp = head;
+            head = head->next;
+            delete temp;
         }
     }
 
@@ -153,7 +154,7 @@ public:
      * backward by one index.
      * @param index index of the data want to break in
      * @param data data which wanted to insert into LinkedList
-     * @version 1.0
+     * @version 1.3
      */
     void insert(int index, T data) {
         if (index > size) {
@@ -163,16 +164,20 @@ public:
         } else if (index < 0) {
             throw std::underflow_error("in\"LinkedList::insert\", index should equals or beyond zero");
         } else {
-            Node<T> *temp = head;
-            for (int i = 0; i < index - 1; ++i) {
+            auto *temp = head;
+            auto *newNode = new Node<T>();
+            for (int i = 0; i < index; ++i) {
                 temp = temp->next;
             }
-            auto *newNode = new Node<T>();
-            newNode->next = temp->next;
-            newNode->pre = temp;
             newNode->data = data;
-            temp->next->pre = newNode;
-            temp->next = newNode;
+            newNode->pre = temp->pre;
+            newNode->next = temp;
+            temp->pre = newNode;
+            if(index == 0){
+                head = newNode;
+            } else {
+                newNode->pre->next = newNode;
+            }
             size++;
         }
     }
@@ -256,13 +261,11 @@ public:
      */
     T valueOf(int index) {
         if (index > size) {
-            throw std::out_of_range("invalid index:index beyond capacity");
+            throw std::out_of_range("in\"LinkedList::valueOf\",invalid index:index beyond capacity");
         } else if (size == index) {
-            Node<T> *temp = tail;
-            tail = tail->pre;
-            delete temp;
+            return tail->data;
         } else if (index < 0) {
-            throw std::underflow_error("index should equals or beyond zero");
+            throw std::underflow_error("in\"LinkedList::valueOf\",index should equals or beyond zero");
         } else {
             Node<T> *temp = head;
             for (int i = 0; i < index; ++i) {

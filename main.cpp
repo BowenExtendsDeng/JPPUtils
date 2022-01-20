@@ -2,65 +2,25 @@
 
 #include "ArrayList.hpp"
 #include "LinkedList.hpp"
+#include "Sort.hpp"
 
 using namespace std;
 
 int main() {
-    int test[40] = {1,2,3,4,5,6,7,8,9,0,
-                    1,2,3,4,5,6,7,8,9,0,
-                    1,2,3,4,5,6,7,8,9,0,
-                    1,2,3,4,5,6,7,8,9,0};
-    auto *testList = new ArrayList<int>(test,40);
-    cout << testList->indexOf(5) << endl;
-    cout << testList->valueOf(1) << endl;
+    auto testList = new ArrayList<int>();
+    testList->add(1);
+    testList->add(2);
+    testList->add(5);
+    testList->add(4);
+    testList->add(3);
 
-    for (int i = 0; i < testList->length(); ++i) {
-        cout << testList->valueOf(i) << ",";
+    testList->insert(0,9);
+    testList->insert(5,8);
+
+    auto item = insertionSort(*testList, false);
+
+    for (int i = 0; i < item.length(); i++) {
+        cout<<item.valueOf(i)<<",";
     }
-    cout << endl;
-
-    testList->remove(5);
-
-    for (int i = 0; i < testList->length(); ++i) {
-        cout << testList->valueOf(i) << ",";
-    }
-    cout << endl;
-
-    cout << testList->length() << endl;
-
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-    testList->remove(0);
-
-    for (int i = 0; i < testList->length(); ++i) {
-        cout << testList->valueOf(i) << ",";
-    }
-    cout << endl;
-
-    testList->insert(1, 99);
-
-    for (int i = 0; i < testList->length(); ++i) {
-        cout << testList->valueOf(i) << ",";
-    }
-    cout << endl;
-
-    cout << testList->length();
-};
+}
 

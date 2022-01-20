@@ -59,7 +59,7 @@ private:
      * reduce capacity when size far away from the bound.It reduce
      * one third of its capacity and it will ensure no valid data
      * will be missing during this action.
-     * @version 1.0
+     * @version     1.0
      */
     void inline reduceCapacity() {
         if ((size * 1.5) < capacity) {
@@ -77,7 +77,7 @@ public:
     /**
      * none argument constructor of class ArrayList. It will
      * allocate an empty array size of 10.
-     * @version 1.0
+     * @version     1.0
      */
     ArrayList<T>() {
         capacity = DEFAULT_CAPACITY;
@@ -86,17 +86,18 @@ public:
 
     /**
      * initialize dynamic array with a specific size
-     * @param initialCapacity initial capacity of array
-     * "elementData".
-     * It should be above zero
-     * @version 1.0
+     * @param initialCapacity   initial capacity of array
+     *                          "elementData".
+     *                          It should be above zero
+     * @version                 1.0
      */
     explicit ArrayList<T>(int initialCapacity) {
         if (initialCapacity > 0) {
             capacity = initialCapacity;
             this->elementData = new T[initialCapacity - 1];
         } else {
-            throw std::underflow_error("initial capacity should beyond zero");
+            throw std::underflow_error("in\"ArrayList::ArrayList<T>(int initialCapacity)\","
+                                       "initial capacity should beyond zero");
         }
     }
 
@@ -104,8 +105,8 @@ public:
      * initialize dynamic array by a cpp array.capacity and
      * * size will be update to the same as the size of parsed
      * array
-     * @param array a cpp array to parse into ArrayList
-     * @param length length of the passing array
+     * @param array     a cpp array to parse into ArrayList
+     * @param length    length of the passing array
      * @version 1.1
      */
     explicit ArrayList<T>(T array[],int length) {
@@ -127,8 +128,8 @@ public:
      * add a new element into array "elementData".Also expand
      * elementData by calling expandCapacity when it finds that
      * size is equal to capacity
-     * @param data a data to put into elementData
-     * @version 1.0
+     * @param data      a data to put into elementData
+     * @version         1.0
      */
     void add(T data) {
         if (size < capacity) {
@@ -139,7 +140,7 @@ public:
             elementData[size] = data;
             size++;
         } else {
-            throw std::out_of_range("size beyond capacity:this arraylist is no longer secure");
+            throw std::out_of_range("in\"ArrayList::add\",size beyond capacity:this arraylist is no longer secure");
         }
     }
 
@@ -147,15 +148,15 @@ public:
      * insert a data into a designated place by giving its index.
      * Origin data in this index and after this index will move
      * backward by one index.
-     * @param index a index that wanted to put data in
-     * @param data a data intended to break in array "elementData"
+     * @param index     a index that wanted to put data in
+     * @param data      a data intended to break in array "elementData"
      * @version 1.0
      */
     void insert(int index, T data) {
         if (index > size) {
-            throw std::out_of_range("invalid index:index beyond capacity");
+            throw std::out_of_range("in\"ArrayList::insert\",invalid index:index beyond capacity");
         } else if (index < 0) {
-            throw std::underflow_error("index should equals or beyond zero");
+            throw std::underflow_error("in\"ArrayList::insert\",index should equals or beyond zero");
         } else {
             add(elementData[size - 1]);
             for (int i = size - 2; i > index; --i) {
@@ -182,7 +183,7 @@ public:
      */
     void remove(int index) {
         if (index > size) {
-            throw std::overflow_error("invalid index:index beyond capacity");
+            throw std::overflow_error("in\"ArrayList::remove\",invalid index:index beyond capacity");
         }
         for (int i = index; i < size; ++i) {
             elementData[i] = elementData[i + 1];
@@ -231,7 +232,7 @@ public:
      */
     T valueOf(int index) {
         if (index >= size) {
-            throw std::overflow_error("invalid index:index beyond capacity");
+            throw std::overflow_error("in\"ArrayList::valueOf\",invalid index:index beyond capacity");
         } else {
             return elementData[index];
         }
