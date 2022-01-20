@@ -59,7 +59,7 @@ LinkedList<T> insertionSort(List<T> &srcList,bool ascending){
 template<typename T>
 void bubbleSort(List<T> &srcList,bool ascending){
 
-    for (int i = 0; i < srcList.length(); i++) {
+    for (int i = 0; i < srcList.length() - 1; i++) {
         for (int j = i; j < srcList.length(); ++j) {
             if(ascending && srcList.valueOf(i) > srcList.valueOf(j)){
                 T temp = srcList.valueOf(i);
@@ -72,6 +72,37 @@ void bubbleSort(List<T> &srcList,bool ascending){
                 srcList.update(i,srcList.valueOf(j));
                 srcList.update(j, temp);
             }
+        }
+    }
+}
+
+/**
+ * @brief           selection sort
+ * @warning         only LinkedList and ArrayList can be passed in.Some type
+ *                  such as String or Char are not recommended to sort
+ * @tparam T        type of data wanted to sort.
+ * @param srcList   a sort wanted list
+ * @param ascending true mains the list will will be sorted in ascending order.
+ *                  false mains the list will will be sorted in descending order
+ * @return          sorted list in LinkedList form
+ * @version 1.0
+ */
+template<typename T>
+void selectionSort(List<T> &srcList,bool ascending){
+    for (int i = 0; i < srcList.length() - 1; i++) {
+        int minOrMaxIndex = i;
+        for (int j = i + 1; j < srcList.length(); j++) {
+            if(ascending && (srcList.valueOf(minOrMaxIndex) > srcList.valueOf(j))){
+                minOrMaxIndex = j;
+            }
+            if ((!ascending) && (srcList.valueOf(minOrMaxIndex) < srcList.valueOf(j))) {
+                minOrMaxIndex = j;
+            }
+        }
+        if(minOrMaxIndex != i){
+            T temp = srcList.valueOf(i);
+            srcList.update(i,srcList.valueOf(minOrMaxIndex));
+            srcList.update(minOrMaxIndex, temp);
         }
     }
 }
