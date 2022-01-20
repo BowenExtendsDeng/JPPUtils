@@ -3,7 +3,7 @@
  *          cpp data structure
  * @author BowenDeng
  * @date 2021/1/19
- * @version 0.1 <p>  </p>
+ * @version 1.0 <p>  </p>
  */
 
 #pragma once
@@ -20,7 +20,7 @@
  * @param ascending true mains the list will will be sorted in ascending order.
  *                  false mains the list will will be sorted in descending order
  * @return          sorted list in LinkedList form
- * @version 0.1
+ * @version 1.0
  */
 template<typename T>
 LinkedList<T> insertionSort(List<T> &srcList,bool ascending){
@@ -45,4 +45,33 @@ LinkedList<T> insertionSort(List<T> &srcList,bool ascending){
     return *dstList;
 }
 
+/**
+ * @brief           bubble sort
+ * @warning         only LinkedList and ArrayList can be passed in.Some type
+ *                  such as String or Char are not recommended to sort
+ * @tparam T        type of data wanted to sort.
+ * @param srcList   a sort wanted list
+ * @param ascending true mains the list will will be sorted in ascending order.
+ *                  false mains the list will will be sorted in descending order
+ * @return          sorted list in LinkedList form
+ * @version 1.0
+ */
+template<typename T>
+void bubbleSort(List<T> &srcList,bool ascending){
 
+    for (int i = 0; i < srcList.length(); i++) {
+        for (int j = i; j < srcList.length(); ++j) {
+            if(ascending && srcList.valueOf(i) > srcList.valueOf(j)){
+                T temp = srcList.valueOf(i);
+                srcList.update(i,srcList.valueOf(j));
+                srcList.update(j, temp);
+            }
+
+            if ((!ascending) && srcList.valueOf(i) < srcList.valueOf(j)) {
+                T temp = srcList.valueOf(i);
+                srcList.update(i,srcList.valueOf(j));
+                srcList.update(j, temp);
+            }
+        }
+    }
+}

@@ -17,10 +17,10 @@ int main() {
     testList->insert(0,9);
     testList->insert(5,8);
 
-    auto item = insertionSort(*testList, false);
+     bubbleSort(*testList, false);
 
-    for (int i = 0; i < item.length(); i++) {
-        cout<<item.valueOf(i)<<",";
+    for (int i = 0; i < testList->length(); i++) {
+        cout<<testList->valueOf(i)<<",";
     }
 }
 
