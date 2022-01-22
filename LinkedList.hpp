@@ -1,40 +1,40 @@
 /**
- * @brief  a java like link list impl by cpp
- * @author BowenDeng
- * @date 2021/1/19
+ * @brief           a java like link list impl by cpp
+ * @author          BowenDeng
+ * @date            2021/1/19
  * @version 1.0 <p> impl a doubly linked list with add, insert, update, remove... methods </p>
- * @version 1.1 <p> 2021/1/19
+ * @version 1.1 <p> 2021/1/19 </p>
  *              <p> add circular doubly linked list as a alternative choice </p>
  *              <p> fixed some bug </p>
- * @version 1.2 <p> 2021/1/19
+ * @version 1.2 <p> 2021/1/19 </p>
  *              <p> add one parameter constructor to ArrayList.Now developers can create
  *                  an instance by passing an cpp array </p>
- * @version 1.3 <p> 2021/1/20
- *              <p> fix bug in ~LinkedList<>()</p>
+ * @version 1.3 <p> 2021/1/20 </p>
+ *              <p> fix bug in ~LinkedList and insert </p>
  */
 
 #pragma once
 
 /**
  * a storage unit
- * @tparam T type of data wanted to store
- * @version 1.0
+ * @tparam T    type of data wanted to store
+ * @version     1.0
  */
 template<class T>
 struct Node {
     /**
      * real place to put data
-     * @version 1.0
+     * @version     1.0
      */
     T data;
     /**
      * pointer to point previous storage unit
-     * @version 1.0
+     * @version     1.0
      */
     Node<T> *pre;
     /**
      * pointer to point next storage unit
-     * @version 1.0
+     * @version     1.0
      */
     Node<T> *next;
 };
@@ -45,25 +45,25 @@ struct Node {
 /**
  * @brief  a java like link list impl by cpp
  *
- * @tparam T type of data that to store
- * @version 1.0
+ * @tparam T    type of data that to store
+ * @version     1.0
  */
 template<class T>
 class LinkedList : public List<T>{
 private:
     /**
      * first storage unit in LinkedList
-     * @version 1.0
+     * @version     1.0
      */
     Node<T> *head;
     /**
      * last storage unit in LinkedList
-     * @version 1.0
+     * @version     1.0
      */
     Node<T> *tail;
     /**
      * amount of storage units
-     * @version 1.0
+     * @version     1.0
      */
     int size = 0;
     /**
@@ -79,19 +79,19 @@ private:
      * "doCircular" and "deCircular".
      * </p>
      *
-     * @version 1.1
+     * @version     1.1
      */
     bool isCircular = false;
 public:
     /**
      * default constructor to create an instance of doubly linked list
-     * @version 1.0
+     * @version     1.0
      */
     LinkedList<T>() = default;
 
     /**
      * default constructor for LinkedList]
-     * @version 1.0
+     * @version     1.0
      */
     explicit LinkedList<T>(bool isCircular) {
         if (isCircular) {
@@ -101,9 +101,9 @@ public:
 
     /**
      * initialize linked list by a cpp array
-     * @param array a cpp array to parse into ArrayList
-     * @param length length of the passing array
-     * @version 1.2
+     * @param array     a cpp array to parse into ArrayList
+     * @param length    length of the passing array
+     * @version         1.2
      */
     explicit LinkedList<T>(T array[],int length){
         for (int i = 0; i < length; ++i) {
@@ -113,7 +113,7 @@ public:
 
     /**
      * free all storage units in a instance of LinkedList
-     * @version 1.3
+     * @version     1.3
      */
     ~LinkedList<T>() {
         for (int i = 0; i < size; ++i) {
@@ -125,8 +125,8 @@ public:
 
     /**
      * add a new element at the tail of LinkedList
-     * @param data
-     * @version 1.0
+     * @param data      a new element to add into LinkedList
+     * @version         1.0
      */
     void add(T data) {
         if (size == 0) {
@@ -152,9 +152,9 @@ public:
      * insert a data into a designated place by giving its index.
      * Origin data in this index and after this index will move
      * backward by one index.
-     * @param index index of the data want to break in
-     * @param data data which wanted to insert into LinkedList
-     * @version 1.3
+     * @param index     index of the data want to break in
+     * @param data      data which wanted to insert into LinkedList
+     * @version         1.3
      */
     void insert(int index, T data) {
         if (index > size) {
@@ -184,9 +184,9 @@ public:
 
     /**
      * update a data by a designated index
-     * @param index index of update wanted data
-     * @param data data wanted to update
-     * @version 1.0
+     * @param index     index of update wanted data
+     * @param data      data wanted to update
+     * @version         1.0
      */
     void update(int index, T data) {
         if (index > size) {
@@ -206,8 +206,8 @@ public:
 
     /**
      * remove a data by its index
-     * @param index index which contains the data wanted to erase
-     * @version 1.0
+     * @param index     index which contains the data wanted to erase
+     * @version         1.0
      */
     void remove(int index) {
         if (index > size) {
@@ -238,9 +238,9 @@ public:
     /**
      * find first index of a data in LinkedList,if it
      * is not found,return -1 instead.
-     * @param data a data that wanted its index
-     * @return first index of the data in LinkedList
-     * @version 1.0
+     * @param data      a data that wanted its index
+     * @return          first index of the data in LinkedList
+     * @version         1.0
      */
     int indexOf(T data) {
         Node<T> *temp = head;
@@ -255,9 +255,9 @@ public:
 
     /**
      * return a value in LinkedList by offering its index
-     * @param index value want to get
-     * @return value of this designated index
-     * @version 1.0
+     * @param index     value want to get
+     * @return          value of this designated index
+     * @version         1.0
      */
     T valueOf(int index) {
         if (index > size) {
@@ -278,9 +278,9 @@ public:
     /**
      * find last index of a data in LinkedList,if it
      * is not found,return -1 instead.
-     * @param data a data that wanted its index
-     * @return first index of the data in array "elementData"
-     * @version 1.0
+     * @param data      a data that wanted its index
+     * @return          first index of the data in array "elementData"
+     * @version         1.0
      */
     int lastIndexOf(T data) {
         Node<T> *temp = head;
@@ -295,8 +295,8 @@ public:
 
     /**
     * get the amount of real data that stored in LinkedList
-    * @return size of an ArrayList
-    * @version 1.0
+    * @return       size of an ArrayList
+    * @version      1.0
     */
     int length() {
         return size;
@@ -304,7 +304,7 @@ public:
 
     /**
      * modify linked list to circular linked list
-     * @version 1.1
+     * @version     1.1
      */
     void doCircular() {
         isCircular = true;
@@ -314,7 +314,7 @@ public:
 
     /**
      * modify doubly circular linked list to non-circular doubly linked list
-     * @version 1.1
+     * @version     1.1
      */
     void deCircular() {
         isCircular = false;
@@ -324,8 +324,8 @@ public:
 
     /**
      * transfer LinkedList into standard array in cpp
-     * @return data in array form
-     * @version 1.0
+     * @return      data in array form
+     * @version     1.0
      */
     T *toArray() {
         auto *temp = new T[size];
@@ -336,5 +336,4 @@ public:
         }
         return temp;
     }
-
 };

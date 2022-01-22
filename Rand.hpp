@@ -30,7 +30,7 @@
 
 static unsigned int prngState = 0;
 
-/*********************************************************************
+/**
  * @fn      _rand
  *
  * @brief   Get a random value
@@ -65,7 +65,7 @@ unsigned int jPPRand() {
 }
 
 
-/*********************************************************************
+/**
  * @fn      rand_range
  *
  * @brief   Get a random value in the specified range

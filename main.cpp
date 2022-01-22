@@ -18,7 +18,7 @@ int main() {
     testList->insert(0,9);
     testList->insert(5,8);
 
-     selectionSort(*testList, false);
+     bubbleSort(*testList, true);
 
     for (int i = 0; i < testList->length(); i++) {
         cout<<testList->valueOf(i)<<",";

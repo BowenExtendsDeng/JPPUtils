@@ -1,19 +1,23 @@
 /**
- * @brief  a java like dynamic array impl by cpp
- * @author BowenDeng
- * @date 2021/1/18
+ * @brief           a java like dynamic array impl by cpp
+ * @author          BowenDeng
+ * @date            2021/1/18
  * @version 1.0 <p> impl a dynamic array with add, insert, update, remove... methods </p>
- * @version 1.1 <p> 2021/1/19
+ * @version 1.1 <p> 2021/1/19 </p>
  *              <p> add one parameter constructor to ArrayList.Now developers can create
  *                  an instance by passing an cpp array </p>
+ * @version 1.2 <p> 2021/1/23 </p>
+ *              <p> in ArrayList(T array[],int length): delete *array when this arrayList
+ *                  created to avoid wasting memory space </p>
  */
+
 #pragma once
 #include "List.hpp"
 
 /**
  * @brief  a java like dynamic array impl by cpp
  *
- * @tparam T type of data that to store
+ * @tparam T    type of data that to store
  */
 template<class T>
 class ArrayList : public List<T>{
@@ -21,29 +25,29 @@ private:
     /**
      * capacity of array "element data" when it is created by
      * no-argument constructor
-     * @version 1.0
+     * @version     1.0
      */
     const static int DEFAULT_CAPACITY = 10;
     /**
      * bound of array "element data"
-     * @version 1.0
+     * @version     1.0
      */
     int capacity{};
     /**
      * number of valid data stored in array "element data"
-     * @version 1.0
+     * @version     1.0
      */
     int size = 0;
     /**
      * real place to store data
-     * @version 1.0
+     * @version     1.0
      */
     T *elementData;
 
     /**
      * expand capacity of array "elementData". It grows 1.5
      * times than before everytime it reaches to the bound.
-     * @version 1.0
+     * @version     1.0
      */
     void inline expandCapacity() {
         capacity *= 1.5;
@@ -103,11 +107,11 @@ public:
 
     /**
      * initialize dynamic array by a cpp array.capacity and
-     * * size will be update to the same as the size of parsed
+     * size will be update to the same as the size of parsed
      * array
      * @param array     a cpp array to parse into ArrayList
      * @param length    length of the passing array
-     * @version 1.1
+     * @version         1.2
      */
     explicit ArrayList<T>(T array[],int length) {
         elementData = new T[length];
@@ -116,11 +120,12 @@ public:
         }
         capacity = length;
         size = length;
+        delete array;
     }
 
     /**
      * free memory of array "elementData"
-     * @version 1.0
+     * @version     1.0
      */
     ~ArrayList() { delete elementData; }
 
@@ -150,7 +155,7 @@ public:
      * backward by one index.
      * @param index     a index that wanted to put data in
      * @param data      a data intended to break in array "elementData"
-     * @version 1.0
+     * @version         1.0
      */
     void insert(int index, T data) {
         if (index > size) {
@@ -168,9 +173,9 @@ public:
 
     /**
      * update a data by a designated index
-     * @param index index of update wanted data
-     * @param data data wanted to update
-     * @version 1.0
+     * @param index     index of update wanted data
+     * @param data      data wanted to update
+     * @version         1.0
      */
     void update(int index, T data) {
         elementData[index] = data;
@@ -178,8 +183,8 @@ public:
 
     /**
      * remove a data by its index
-     * @param index index which contains the data wanted to erase
-     * @version 1.0
+     * @param index     index which contains the data wanted to erase
+     * @version         1.0
      */
     void remove(int index) {
         if (index > size) {
@@ -195,9 +200,9 @@ public:
     /**
      * find first index of a data in array "elementData",if it
      * is not found,return -1 instead.
-     * @param data a data that wanted its index
-     * @return first index of the data in array "elementData"
-     * @version 1.0
+     * @param data      a data that wanted its index
+     * @return          first index of the data in array "elementData"
+     * @version         1.0
      */
     int indexOf(T data) {
         for (int i = 0; i < size; i++) {
@@ -211,9 +216,9 @@ public:
     /**
      * find last index of a data in array "elementData",if it
      * is not found,return -1 instead.
-     * @param data a data that wanted its index
-     * @return first index of the data in array "elementData"
-     * @version 1.0
+     * @param data      a data that wanted its index
+     * @return          first index of the data in array "elementData"
+     * @version         1.0
      */
     int lastIndexOf(T data) {
         for (int i = size - 1; i >= 0; i--) {
@@ -226,9 +231,9 @@ public:
 
     /**
      * return a value in array "elementData" by offering its index
-     * @param index value want to get
-     * @return value of this designated index
-     * @version 1.0
+     * @param index     value want to get
+     * @return          value of this designated index
+     * @version         1.0
      */
     T valueOf(int index) {
         if (index >= size) {
@@ -240,8 +245,8 @@ public:
 
     /**
      * get the amount of real data that stored in array "elementData"
-     * @return size of an ArrayList
-     * @version 1.0
+     * @return      size of an ArrayList
+     * @version     1.0
      */
     int length() {
         return size;
@@ -250,8 +255,8 @@ public:
     /**
      * get the real size of array "elementData".
      * This function is mainly use to debug.
-     * @return size of array "elementData"
-     * @version 1.0
+     * @return      size of array "elementData"
+     * @version     1.0
      */
     int getCapacity() {
         return capacity;
@@ -259,8 +264,8 @@ public:
 
     /**
      * transfer ArrayList into standard array in cpp
-     * @return data in array form
-     * @version 1.0
+     * @return      data in array form
+     * @version     1.0
      */
     T *toArray() {
         auto *temp = new T[size];

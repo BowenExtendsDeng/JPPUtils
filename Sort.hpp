@@ -23,7 +23,7 @@
  * @version 1.0
  */
 template<typename T>
-LinkedList<T> insertionSort(List<T> &srcList,bool ascending){
+void insertionSort(List<T> &srcList,bool ascending){
     auto *dstList = new LinkedList<T>();
     dstList->add(srcList.valueOf(0));
     for (int i = 1; i < srcList.length(); i++) {
@@ -42,7 +42,10 @@ LinkedList<T> insertionSort(List<T> &srcList,bool ascending){
             }
         }
     }
-    return *dstList;
+    for (int i = 0; i < dstList->length(); ++i) {
+        srcList.update(i,dstList->valueOf(i));
+    }
+    delete dstList;
 }
 
 /**
@@ -106,3 +109,5 @@ void selectionSort(List<T> &srcList,bool ascending){
         }
     }
 }
+
+

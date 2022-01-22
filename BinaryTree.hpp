@@ -11,13 +11,11 @@ template<class T>
 class BinaryTree {
 private:
     TreeNode<T> *top;
-    TreeNode<T> *viewer = top;
+    int size = 0;
+    int height = 0;
 public:
     BinaryTree() = default;
-    ~BinaryTree(){
-    }
+    ~BinaryTree()= default;
 
-    TreeNode<T> *getViewer(){
-        return viewer;
-    }
+
 };
