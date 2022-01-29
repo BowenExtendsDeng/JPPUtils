@@ -8,7 +8,9 @@
  *                  an instance by passing an cpp array </p>
  * @version 1.2 <p> 2021/1/23 </p>
  *              <p> in ArrayList(T array[],int length): delete *array when this arrayList
- *                  created to avoid wasting memory space </p>
+ *                  created to avoid memory space waste </p>
+ * @version 1.3 <p> 2021/1/29 </p>
+ *              <p> add swap function to ArrayList: exchange data of two designated index </p>
  */
 
 #pragma once
@@ -273,5 +275,19 @@ public:
             temp[i] = elementData[i];
         }
         return temp;
+    }
+
+    /**
+    * exchange data of two designated index
+    * @param index1     the first index wanted to swap
+     *                  its data with the second index
+    * @param index2     the second index wanted to swap
+     *                  its data with the first index
+    * @version         1.3
+    */
+    void swap(int index1, int index2){
+        T temp = elementData[index1];
+        elementData[index1] = elementData[index2];
+        elementData[index2] = temp;
     }
 };
