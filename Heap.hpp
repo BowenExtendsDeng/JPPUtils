@@ -13,11 +13,16 @@ template<class T>
 class Heap {
 private:
     /**
-     * real place to store data
+     * place to store data
      * @version         1.0
      */
     ArrayList<T> *elementData = new ArrayList<T>();
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     int leftIndex(int index){
         index *= 2;
         if(index > length()){
@@ -29,6 +34,11 @@ private:
         }
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     int rightIndex(int index){
         index = index * 2 + 1;
         if(index > length()){
@@ -40,6 +50,11 @@ private:
         }
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     int parentIndex(int index){
         index /= 2;
         if(index > length()){
@@ -47,43 +62,75 @@ private:
         }else if(index < 1) {
             throw std::underflow_error("in\"Heap::parentIndex\",index should equals or beyond zero");
         }else if(index == 1){
-            throw std::invalid_argument("in\"Heap::parentIndex\",first index do not have a parent");
+            return -1;
         }else {
             return index;
         }
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     T left(int index){
         index = leftIndex(index);
         return elementData->valueOf(index - 1);
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     T right(int index){
         index = rightIndex(index);
         return elementData->valueOf(index - 1);
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     T parent(int index){
         index = parentIndex(index);
         return elementData->valueOf(index - 1);
     }
 
+    /**
+     *
+     */
     void buildMaxHeap(){
         for(int i = length()/2; i > 0; i /= 2){
             maxHeapify(i);
         }
     }
+
 public:
+    /**
+     *
+     * @param srcList
+     */
     explicit Heap(ArrayList<T> srcList){
         elementData = srcList;
         buildMaxHeap();
     }
 
+    /**
+     *
+     * @param array
+     * @param length
+     */
     Heap(T array[],int length){
         elementData = new ArrayList<T>(array, length);
         buildMaxHeap();
     }
 
+    /**
+     *
+     * @param index
+     */
     void maxHeapify(int index){
         int leftChildIndex;
         int rightChildIndex;
@@ -104,19 +151,40 @@ public:
         }
     }
 
+    /**
+     *
+     */
     void maxHeapify(){
         maxHeapify(1);
     }
 
+    /**
+     *
+     * @param temp
+     * @return
+     */
     int indexOf(T temp){
         return elementData->indexOf(temp) + 1;
     }
 
+    /**
+     *
+     * @param index serial number of a designated element in the heap
+     * @return value of element of a designated index in the heap
+     */
     T valueOf(int index){
         return elementData->valueOf(index - 1);
     }
 
+    /**
+     * show length of a heap
+     * @return size of a heap
+     */
     int length(){
         return elementData->length();
+    }
+
+    void swap(int index1, int index2){
+        elementData->swap(index1 - 1, index2 - 1);
     }
 };
