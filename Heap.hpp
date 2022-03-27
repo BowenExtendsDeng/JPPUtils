@@ -1,5 +1,5 @@
 /**
- * @brief           heap impl by arraylist, first index of a heap is: 1
+ * @brief           heap impl by list defined in this project, first index of a heap is: 1
  * @author          BowenDeng
  * @date            2021/1/19
  * @version 1.0 <p>  </p>
@@ -7,6 +7,7 @@
 
 #pragma once
 #include "ArrayList.hpp"
+#include "LinkedList.hpp"
 #include <stdexcept>
 
 template<class T>
@@ -16,12 +17,12 @@ private:
      * place to store data
      * @version         1.0
      */
-    ArrayList<T> *elementData = new ArrayList<T>();
+    List<T> *elementData;
 
     /**
-     *
-     * @param index
-     * @return
+     * method to give left side index of a input index
+     * @param index index to find its left branch
+     * @return left index of this index
      */
     int leftIndex(int index){
         index *= 2;
@@ -35,9 +36,9 @@ private:
     }
 
     /**
-     *
-     * @param index
-     * @return
+     * method to give right side index of a input index
+     * @param index index to find its right branch
+     * @return right index of this index
      */
     int rightIndex(int index){
         index = index * 2 + 1;
@@ -51,9 +52,9 @@ private:
     }
 
     /**
-     *
-     * @param index
-     * @return
+     * method to give parent side index of a input index
+     * @param index index to find its parent branch
+     * @return parent index of this index
      */
     int parentIndex(int index){
         index /= 2;
@@ -69,9 +70,9 @@ private:
     }
 
     /**
-     *
-     * @param index
-     * @return
+     * method to give left side value of a input index
+     * @param index index to find its left branch
+     * @return left side value of this index
      */
     T left(int index){
         index = leftIndex(index);
@@ -79,9 +80,9 @@ private:
     }
 
     /**
-     *
-     * @param index
-     * @return
+     * method to give right side value of a input index
+     * @param index index to find its right branch
+     * @return right side value of this index
      */
     T right(int index){
         index = rightIndex(index);
@@ -89,9 +90,9 @@ private:
     }
 
     /**
-     *
-     * @param index
-     * @return
+     * method to give parent value of a input index
+     * @param index index to find its parent branch
+     * @return parent side value of this index
      */
     T parent(int index){
         index = parentIndex(index);
@@ -99,7 +100,7 @@ private:
     }
 
     /**
-     *
+     * method to build a max heap
      */
     void buildMaxHeap(){
         for(int i = length()/2; i > 0; i /= 2){
@@ -109,18 +110,18 @@ private:
 
 public:
     /**
-     *
-     * @param srcList
+     * instantiate a Heap class by transforming a list into a heap
+     * @param srcList a list to convert into a heap
      */
-    explicit Heap(ArrayList<T> srcList){
+    explicit Heap(List<T> srcList){
         elementData = srcList;
         buildMaxHeap();
     }
 
     /**
-     *
-     * @param array
-     * @param length
+     * instantiate a Heap class by transforming an array into a heap
+     * @param array an array to convert into a heap
+     * @param length length of this input array
      */
     Heap(T array[],int length){
         elementData = new ArrayList<T>(array, length);
