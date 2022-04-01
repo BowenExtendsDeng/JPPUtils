@@ -185,6 +185,11 @@ public:
         return elementData->length();
     }
 
+    /**
+     *
+     * @param index1
+     * @param index2
+     */
     void swap(int index1, int index2){
         elementData->swap(index1 - 1, index2 - 1);
     }

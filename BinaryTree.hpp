@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ArrayList.hpp"
+
 template<class T>
 struct TreeNode {
     T data;
@@ -16,4 +18,8 @@ private:
 public:
     BinaryTree() = default;
     ~BinaryTree()= default;
+
+    ArrayList<T> midView(){
+
+    }
 };

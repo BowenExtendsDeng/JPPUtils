@@ -37,12 +37,12 @@ template <typename T>
 class Queue{
 private:
     /**
-     * first storage unit in LinkedList
+     * first storage unit in Queue
      * @version     1.0
      */
     Node<T> *head;
     /**
-     * last storage unit in LinkedList
+     * last storage unit in Queue
      * @version     1.0
      */
     Node<T> *tail;
@@ -72,7 +72,7 @@ public:
     }
 
     /**
-     * enqueue a new element at the tail of LinkedList
+     * enqueue a new element at the tail of Queue
      * @param data      a new element to add into LinkedList
      * @version         1.0
      */
@@ -109,7 +109,7 @@ public:
     }
 
     /**
-     * find first index of a data in LinkedList,if it
+     * find first index of a data in Queue,if it
      * is not found,return -1 instead.
      * @param data      a data that wanted its index
      * @return          first index of the data in LinkedList
@@ -127,7 +127,7 @@ public:
     }
 
     /**
-     * return a value in LinkedList by offering its index
+     * return a value in Queue by offering its index
      * @param index     value want to get
      * @return          value of this designated index
      * @version         1.0
@@ -149,7 +149,7 @@ public:
     }
 
     /**
-     * find last index of a data in LinkedList,if it
+     * find last index of a data in Queue,if it
      * is not found,return -1 instead.
      * @param data      a data that wanted its index
      * @return          first index of the data in array "elementData"
@@ -167,7 +167,7 @@ public:
     }
 
     /**
-    * get the amount of real data that stored in LinkedList
+    * get the amount of real data that stored in Queue
     * @return       size of an ArrayList
     * @version      1.0
     */
@@ -176,7 +176,7 @@ public:
     }
 
     /**
-     * transfer LinkedList into standard array in cpp
+     * transfer Queue into standard array in cpp
      * @return      data in array form
      * @version     1.0
      */
